@@ -1,0 +1,30 @@
+name: Portifolio API
+
+on:
+  push:
+    branches:
+      - develop
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+
+      - name: Set Up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: "3.11"
+
+      - name: Install Taskipy
+        run: |
+          python -m pip install --upgrade pip
+          pip install taskipy
+
+      - name: Build Project With Docker
+        run: task build
+
+      - name: Running tests with Docker
+        run: task tests

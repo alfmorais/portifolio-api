@@ -1,0 +1,42 @@
+[tool.poetry]
+name = "portifolio"
+version = "0.1.0"
+description = ""
+authors = ["alfmorais <alfredneto@hotmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+djangorestframework = "^3.15.1"
+markdown = "^3.6"
+django-filter = "^24.2"
+gunicorn = "^22.0.0"
+psycopg2-binary = "^2.9.9"
+dj-database-url = "^2.2.0"
+djangorestframework-simplejwt = "^5.3.1"
+
+
+[tool.poetry.group.test.dependencies]
+taskipy = "^1.12.2"
+ipdb = "^0.13.13"
+pre-commit = "^3.7.1"
+pytest = "^8.2.2"
+pytest-django = "^4.8.0"
+factory-boy = "^3.3.0"
+pytest-factoryboy = "^2.7.0"
+
+[tool.pytest.ini_options]
+DJANGO_SETTINGS_MODULE = "tests.settings"
+pythonpath = ". src"
+python_files = ["tests_*.py", "*_test.py", "testing/python/*.py"]
+
+[tool.taskipy.tasks]
+requirements = { cmd = "poetry export --format=requirements.txt --output=requirements.txt --with test",  help = "Generate requirements.txt" }
+build = { cmd = "docker compose build --no-cache", help = "Build project" }
+up = { cmd = "docker compose up", help = "Up project" }
+run = { cmd = "docker compose build --no-cache && docker compose up", help = "Running project" }
+tests = { cmd = "docker compose run api pytest -v", help = "Running unit tests" }
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
