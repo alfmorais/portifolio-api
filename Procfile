@@ -1,1 +1,1 @@
-web: gunicorn src.portifolio.wsgi
+web: gunicorn src.portifolio.wsgi --log-file -
