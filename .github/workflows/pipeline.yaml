@@ -5,6 +5,21 @@ on:
     branches:
       - develop
 
+env:
+  SECRET_KEY: ${{ secrets.SECRET_KEY }}
+  DATABASE_URL: ${{ secrets.DATABASE_URL }}
+  DB_USERNAME: ${{ secrets.DB_USERNAME }}
+  DB_SECRET: ${{ secrets.DB_SECRET }}
+  DB_HOST: ${{ secrets.DB_HOST }}
+  DB_PORT: ${{ secrets.DB_PORT }}
+  DB_NAME: ${{ secrets.DB_NAME }}
+  DEBUG: ${{ secrets.DEBUG }}
+  DJANGO_ALLOWED_HOSTS: ${{ secrets.DJANGO_ALLOWED_HOSTS }}
+  DEVELOPMENT_MODE: ${{ secrets.DEVELOPMENT_MODE }}
+  POSTGRES_DB: ${{ secrets.POSTGRES_DB }}
+  POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
+  POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -23,36 +38,5 @@ jobs:
           python -m pip install --upgrade pip
           pip install taskipy
 
-      - name: Build Project With Docker
-        run: task build
-        env:
-          SECRET_KEY: ${{ secrets.SECRET_KEY }}
-          DATABASE_URL: ${{ secrets.DATABASE_URL }}
-          DB_USERNAME: ${{ secrets.DB_USERNAME }}
-          DB_SECRET: ${{ secrets.DB_SECRET }}
-          DB_HOST: ${{ secrets.DB_HOST }}
-          DB_PORT: ${{ secrets.DB_PORT }}
-          DB_NAME: ${{ secrets.DB_NAME }}
-          DEBUG: ${{ secrets.DEBUG }}
-          DJANGO_ALLOWED_HOSTS: ${{ secrets.DJANGO_ALLOWED_HOSTS }}
-          DEVELOPMENT_MODE: ${{ secrets.DEVELOPMENT_MODE }}
-          POSTGRES_DB: ${{ secrets.POSTGRES_DB }}
-          POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
-          POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
-
       - name: Running tests with Docker
         run: task tests
-        env:
-          SECRET_KEY: ${{ secrets.SECRET_KEY }}
-          DATABASE_URL: ${{ secrets.DATABASE_URL }}
-          DB_USERNAME: ${{ secrets.DB_USERNAME }}
-          DB_SECRET: ${{ secrets.DB_SECRET }}
-          DB_HOST: ${{ secrets.DB_HOST }}
-          DB_PORT: ${{ secrets.DB_PORT }}
-          DB_NAME: ${{ secrets.DB_NAME }}
-          DEBUG: ${{ secrets.DEBUG }}
-          DJANGO_ALLOWED_HOSTS: ${{ secrets.DJANGO_ALLOWED_HOSTS }}
-          DEVELOPMENT_MODE: ${{ secrets.DEVELOPMENT_MODE }}
-          POSTGRES_DB: ${{ secrets.POSTGRES_DB }}
-          POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
-          POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
