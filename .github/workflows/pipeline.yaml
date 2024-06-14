@@ -39,21 +39,5 @@ jobs:
           python -m pip install --upgrade pip
           pip install taskipy
 
-      - name: Verify Environment Variables
-        run: |
-          echo "SECRET_KEY=$SECRET_KEY"
-          echo "DATABASE_URL=$DATABASE_URL"
-          echo "DB_USERNAME=$DB_USERNAME"
-          echo "DB_SECRET=$DB_SECRET"
-          echo "DB_HOST=$DB_HOST"
-          echo "DB_PORT=$DB_PORT"
-          echo "DB_NAME=$DB_NAME"
-          echo "DEBUG=$DEBUG"
-          echo "DJANGO_ALLOWED_HOSTS=$DJANGO_ALLOWED_HOSTS"
-          echo "DEVELOPMENT_MODE=$DEVELOPMENT_MODE"
-          echo "POSTGRES_DB=$POSTGRES_DB"
-          echo "POSTGRES_USER=$POSTGRES_USER"
-          echo "POSTGRES_PASSWORD=$POSTGRES_PASSWORD"
-
       - name: Running tests with Docker
         run: task tests
